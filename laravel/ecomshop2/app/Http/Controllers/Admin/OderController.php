@@ -12,4 +12,8 @@ class OderController extends Controller
         $alloder = Cart::latest()->get();
         return view('admin.pendingoder', compact('alloder'));
     }
+    public function DeleteOrder ($id){
+        Cart::findOrFail($id)->delete();
+        return redirect()->route('pendingoder')->with('message', 'Order Deleted Succesfully!');
+    }
 }

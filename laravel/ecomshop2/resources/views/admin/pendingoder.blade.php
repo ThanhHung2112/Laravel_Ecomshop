@@ -45,7 +45,7 @@ Pending Oder - Ecomshop
                             <td>{{ $order->price }} $</td>
                             <td>
                                 <a href="#" class="btn btn-primary">Done</a>
-                                <a href="#" class="btn btn-warning">Delete</a>
+                                <a href="{{ route('delorder', $order->id) }}" class="btn btn-warning">Delete</a>
                             </td>
                         </tr>
 

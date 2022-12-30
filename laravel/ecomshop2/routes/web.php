@@ -72,11 +72,6 @@ Route::get('/dashboard', function () {
 
 })->middleware(['auth', 'role:user'])->name('dashboard');
 
-// Route::middleware(['auth', 'role:user'])->group(function () {
-//     Route::controller(HomeController::class)->group(function () {
-//         Route::get('/dashboard', 'Index')->name('Home');
-//     });
-// });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -118,6 +113,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::controller(OderController::class)->group(function () {
         Route::get('/admin/pending-oder', 'Index')->name('pendingoder');
+        Route::get('/delorder/{id}', 'DeleteOrder')->name('delorder');
     });
 });
 

@@ -13,7 +13,7 @@
     <h2 class="py-5">Homepage</h2>
     <div class="fashion_section">
         <div id="main_slider">
-            
+
                     <div class="container">
                         <h1 class="fashion_taital">All Products</h1>
                         <div class="fashion_section_2">
@@ -23,7 +23,8 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">{{ $product->product_name }}</h4>
                                         <p class="price_text">Price <span style="color: #262626;">$ {{ $product->price }}</span></p>
-                                        <div class="tshirt_img"><img src="{{ asset($product->product_img) }}"></div>
+                                        <div class="tshirt_img"><img src="{{ asset($product->product_img) }}" style="height: 300px"></div>
+                                        {{-- <p class="description_text">Short Des: {{ $product->product_short_des }}</p> --}}
                                         <div class="btn_main">
                                             <div class="buy_bt">
                                                 <form action="{{ route('addproducttocart') }}" method="POST">
@@ -35,7 +36,7 @@
                                                     <input class="btn btn-warning" type="submit" value="Buy Now" name="" id="">
                                                 </form>
                                             </div>
-                                            <div class="seemore_bt"><a href="{{ route('singleproduct', [$product->id, $product->slug]) }}">See More</a></div>
+                                            <div style="padding-top: 30px" class="seemore_bt"><a href="{{ route('singleproduct', [$product->id, $product->slug]) }}">See More</a></div>
                                         </div>
                                     </div>
                                 </div>

@@ -1,6 +1,7 @@
 @extends('user_template.layouts.template')
 @section('main-content')
-<div class="container">
+<h2>Welcom {{ Auth::user()->name }}</h2>
+<div style="margin: 20px 0 " class="container">
     <div class="row">
         <div class="col-lg-4">
             <div class="box_main">
