@@ -8,7 +8,7 @@
                     <li><a href="{{ route('userprofile') }}">Dashboard</a></li>
                     <li><a href="{{ route('pendingorders') }}">Pending Order</a></li>
                     <li><a href="{{ route('history') }}">History</a></li>
-                    <li><a href="">Logout</a></li>
+                    <li><a href="{{ route('perform') }}">Logout</a></li>
                 </ul>
             </div>
         </div>

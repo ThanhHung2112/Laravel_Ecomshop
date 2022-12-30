@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -38,14 +39,21 @@ class ClientController extends Controller
         ]);
         return redirect()->route('addtocart')->with('message', 'Your item added to cart successfully!');
     }
+    public function DeleteOrder ($id){
+        Cart::findOrFail($id)->delete();
+        
+        return redirect()->route('addtocart')->with('message', 'Your item deleted successfully!');
+    }
     public function Checkout (){
         return view('user_template.checkout');
     }
     public function UserProfile (){
-        return view('user_template.userprofile');
+        $user = Auth::user()->latest()->get();
+        return view('user_template.userprofile',compact('user'));
     }
     public function PendingOrders (){
-        return view('user_template.pendingorders');
+        $alloder = Cart::latest()->get();
+        return view('user_template.pendingorders', compact('alloder'));
     }
     public function History (){
         return view('user_template.history');

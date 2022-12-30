@@ -47,7 +47,7 @@
 
 <body>
     <!-- banner bg main start -->
-    <div class="banner_bg_main">    
+    <div class="banner_bg_main">
         <!-- header top section start -->
         <div class="container">
             <div class="header_section_top">
@@ -68,11 +68,12 @@
         </div>
         <!-- header top section start -->
         <!-- logo section start -->
+
         <div class="logo_section">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="logo"><a href="index.html"><img src="{{ asset('home/images/logo.png') }}"></a>
+                        <div class="logo"><a href="{{ route('Home') }}"><img src="{{ asset('home/images/logo.png') }}"></a>
                         </div>
                     </div>
                 </div>
@@ -85,7 +86,7 @@
                 <div class="containt_main">
                     <div id="mySidenav" class="sidenav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a href="index.html">Home</a>
+                        <a href="{{ route('Home') }}">Home</a>
                         @foreach ($categories as $category)
                             <a href="{{ route('category', [$category->id, $category->slug]) }}">{{ $category->category_name }}</a>
                         @endforeach
@@ -132,11 +133,11 @@
                         </div>
                         <div class="login_menu">
                             <ul>
-                                <li><a href="#">
+                                <li><a href="{{ route('addtocart') }}">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                         <span class="padding_10">Cart</span></a>
                                 </li>
-                                <li><a href="#">
+                                <li><a href="{{ route('userprofile') }}">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <span class="padding_10">Cart</span></a>
                                 </li>

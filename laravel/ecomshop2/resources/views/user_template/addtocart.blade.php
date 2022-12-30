@@ -30,7 +30,7 @@
                             <td>{{ $product_name }}</td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->price }}</td>
-                            <td><a href="" class="btn btn-warning">Remove</a></td>
+                            <td><a href="{{ route('deleteorder', $item->id) }}" class="btn btn-warning">Remove</a></td>
                         </tr>
                     @endforeach
                 </table>

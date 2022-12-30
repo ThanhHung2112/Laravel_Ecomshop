@@ -11,7 +11,7 @@
                     {{ session()->get('message') }}
                 </div>
 
-        @endif
+        @endif  
         <!-- Bootstrap Table with Header - Light -->
         <div class="card">
             <h5 class="card-header">Available Sub Category Information</h5>
@@ -27,20 +27,20 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($allsubcategories as $subcategory)             
+                        @foreach ($allsubcategories as $subcategory)
 
                         <tr>
                             <td>{{ $subcategory->id }}</td>
                             <td>{{ $subcategory->subcategory_name }}</td>
                             <td>{{ $subcategory->category_name }}</td>
                             <td>{{ $subcategory->product_count }}</td>
-                            <td>    
+                            <td>
                                 <a href="{{ route('editsubcat', $subcategory->id) }}" class="btn btn-primary">Edit</a>
                                 <a href="{{ route('deletesubcat', $subcategory->id) }}" class="btn btn-warning">Delete</a>
                             </td>
                         </tr>
-                        
-                                                    
+
+
                         @endforeach
                     </tbody>
                 </table>
