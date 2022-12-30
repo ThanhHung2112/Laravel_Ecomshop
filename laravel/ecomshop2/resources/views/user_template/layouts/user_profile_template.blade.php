@@ -7,7 +7,7 @@
             <div class="box_main">
                 <ul>
                     <li><a href="{{ route('userprofile') }}">Dashboard</a></li>
-                    <li><a href="{{ route('pendingorders') }}">Pending Order</a></li>
+                    <li><a href="{{ route('userorders') }}">Pending Order</a></li>
                     <li><a href="{{ route('history') }}">History</a></li>
                     <li><a href="{{ route('perform') }}">Logout</a></li>
                 </ul>

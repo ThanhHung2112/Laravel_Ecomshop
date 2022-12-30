@@ -28,7 +28,7 @@
                     </thead>
                     <tbody class="table-border-bottom-0">
                         @foreach ($products as $product)
-                       
+
                         <tr>
                             <td>{{ $product->id }}</td>
                             <td>{{ $product->product_name }}</td>
@@ -42,11 +42,11 @@
                                 <br>
                                 <a style="font-size:12px;margin: 0 auto;" href="{{ route('editproductimg', $product->id) }}" class="btn btn-primary">Change Image</a>
                             </td>
-                            <td>{{ $product->price }} $</td>    
+                            <td>{{ $product->price }} $</td>
                             <td>
                                 <a href="{{ route('editproduct', $product->id) }}" class="btn btn-primary">Edit</a>
                                 <a href="{{ route('deleteproduct', $product->id) }}" class="btn btn-warning">Delete</a>
-                            </td>     
+                            </td>
                         </tr>
 
                         @endforeach

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\Total;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -41,8 +43,19 @@ class ClientController extends Controller
     }
     public function DeleteOrder ($id){
         Cart::findOrFail($id)->delete();
-        
         return redirect()->route('addtocart')->with('message', 'Your item deleted successfully!');
+    }
+    public function BuyProduct ($id){
+        $item = Cart::findOrFail($id);
+        Order::insert([
+            'cart_id' => $item->id,
+            'product_id' => $item->product_id,
+            'user_id' => Auth::id(),
+            'quantity' => $item->quantity,
+            'price' => $item->price,
+        ]);
+        Cart::findOrFail($id)->delete();
+        return redirect()->route('userorders')->with('message', 'Your item added successfully!');
     }
     public function Checkout (){
         return view('user_template.checkout');
@@ -52,11 +65,15 @@ class ClientController extends Controller
         return view('user_template.userprofile',compact('user'));
     }
     public function PendingOrders (){
-        $alloder = Cart::latest()->get();
-        return view('user_template.pendingorders', compact('alloder'));
+        $allorder = Order::latest()->get();
+        return view('user_template.pendingorders', compact('allorder'));
     }
     public function History (){
-        return view('user_template.history');
+        $userid = Auth::user()->id;
+
+        $allhistory = Total::where('user_id', $userid)->get();
+
+        return view('user_template.history', compact('allhistory'));
     }
     public function NewRelease (){
         return view('user_template.newrelease');

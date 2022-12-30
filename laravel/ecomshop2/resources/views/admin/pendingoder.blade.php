@@ -29,7 +29,7 @@ Pending Oder - Ecomshop
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($alloder as $order)
+                        @foreach ($allorder as $order)
                         @php
                             $product_name = App\Models\Product::where('id', $order->product_id)->value('product_name');
                             $img = App\Models\Product::where('id', $order->product_id)->value('product_img');
@@ -44,7 +44,7 @@ Pending Oder - Ecomshop
                             <td>{{ $order->quantity }}</td>
                             <td>{{ $order->price }} $</td>
                             <td>
-                                <a href="#" class="btn btn-primary">Done</a>
+                                <a href="{{ route('storeorder', $order->id) }}" class="btn btn-primary">Done</a>
                                 <a href="{{ route('delorder', $order->id) }}" class="btn btn-warning">Delete</a>
                             </td>
                         </tr>

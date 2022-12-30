@@ -13,8 +13,6 @@ use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,14 +50,16 @@ Route::controller(ClientController::class)->group(function () {
     Route::get('/new-release', 'NewRelease')->name('newrelease');
 });
 // Route::middleware(['auth', 'role:user'])->group(function () {
+
     Route::controller(ClientController::class)->group(function () {
         Route::get('/add-to-cart', 'AddToCart')->name('addtocart');
         Route::post('/add-product-to-cart', 'AddProductToCart')->name('addproducttocart');
         Route::get('/delete-order/{id}', 'DeleteOrder')->name('deleteorder');
+        Route::get('/buyproduct/{id}', 'BuyProduct')->name('buyproduct');
 
         Route::get('/checkout', 'Checkout')->name('checkout');
         Route::get('/user-profile', 'UserProfile')->name('userprofile');
-        Route::get('/user-profile/pending-orders', 'PendingOrders')->name('pendingorders');
+        Route::get('/user-profile/pending-orders', 'PendingOrders')->name('userorders');
         Route::get('/user-profile/history', 'History')->name('history');
 
         Route::get('/todays-deal', 'TodaysDeal')->name('todaysdeal');
@@ -77,6 +77,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/admin/dashboard', 'Index')->name('admindashboard');
+
     });
 
     Route::controller(CategoryController::class)->group(function () {
@@ -112,8 +113,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
     Route::controller(OderController::class)->group(function () {
-        Route::get('/admin/pending-oder', 'Index')->name('pendingoder');
+        Route::get('/admin/pending-order', 'Index')->name('pendingorder');
         Route::get('/delorder/{id}', 'DeleteOrder')->name('delorder');
+        Route::get('/store-order/{id}', 'StoreOrder')->name('storeorder');
     });
 });
 
