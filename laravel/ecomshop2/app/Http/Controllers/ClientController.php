@@ -31,6 +31,12 @@ class ClientController extends Controller
         return view('user_template.addtocart', compact('cart_items'));
     }
     public function AddProductToCart (Request $request){
+        $user = Auth::user();
+        if (is_null($user)) {
+            # code...
+            return view('auth.register');
+
+        }
         $product_price = $request->price;
         $quantity = $request-> quantity;
         $price = $product_price * $quantity;
