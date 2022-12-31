@@ -30,6 +30,7 @@ Route::get('/laravel', function () {
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'Index')->name('Home');
+    Route::get('/search', 'Search')->name('search');
 });
 
 // Logout Route

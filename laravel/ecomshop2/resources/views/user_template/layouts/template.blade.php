@@ -73,7 +73,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="logo"><a href="{{ route('Home') }}"><img src="{{ asset('home/images/logo.png') }}"></a>
+                        <div class="logo"><a href="{{ route('Home') }}"><img
+                                    src="{{ asset('home/images/logo.png') }}"></a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +89,8 @@
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <a href="{{ route('Home') }}">Home</a>
                         @foreach ($categories as $category)
-                            <a href="{{ route('category', [$category->id, $category->slug]) }}">{{ $category->category_name }}</a>
+                            <a
+                                href="{{ route('category', [$category->id, $category->slug]) }}">{{ $category->category_name }}</a>
                         @endforeach
                     </div>
                     <span class="toggle_icon" onclick="openNav()"><img
@@ -99,21 +101,27 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @foreach ($categories as $category)
-                                <a class="dropdown-item" href="{{ route('category', [$category->id, $category->slug]) }}">{{ $category->category_name }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('category', [$category->id, $category->slug]) }}">{{ $category->category_name }}</a>
                             @endforeach
                         </div>
                     </div>
                     <div class="main">
                         <!-- Another variation with a button -->
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search this blog">
-                            <div class="input-group-append">
-                                <button class="btn btn-secondary" type="button"
-                                    style="background-color: #f26522; border-color:#f26522 ">
-                                    <i class="fa fa-search"></i>
-                                </button>
+                        <form action="{{ route('search') }}" method="GET"  class="">
+                            <div class="input-group">
+
+                                <input type="text" name="search" class="form-control"
+                                    placeholder="Search this blog"">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button"
+                                        style="background-color: #f26522; border-color:#f26522 ">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="header_box">
                         <div class="lang_box ">
@@ -139,7 +147,7 @@
                                 </li>
                                 <li><a href="{{ route('userprofile') }}">
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        <span class="padding_10">Cart</span></a>
+                                        <span class="padding_10">Card</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -148,46 +156,46 @@
             </div>
         </div>
         <!-- header section end -->
-                 <!-- banner section start -->
-                 <div class="banner_section layout_padding">
-                    <div class="container">
-                       <div id="my_slider" class="carousel slide" data-ride="carousel">
-                          <div class="carousel-inner">
-                             <div class="carousel-item active">
-                                <div class="row">
-                                   <div class="col-sm-12">
-                                      <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                      <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                                   </div>
+        <!-- banner section start -->
+        <div class="banner_section layout_padding">
+            <div class="container">
+                <div id="my_slider" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
+                                    <div class="buynow_bt"><a href="#">Buy Now</a></div>
                                 </div>
-                             </div>
-                             <div class="carousel-item">
-                                <div class="row">
-                                   <div class="col-sm-12">
-                                      <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                      <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                                   </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
+                                    <div class="buynow_bt"><a href="#">Buy Now</a></div>
                                 </div>
-                             </div>
-                             <div class="carousel-item">
-                                <div class="row">
-                                   <div class="col-sm-12">
-                                      <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                      <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                                   </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
+                                    <div class="buynow_bt"><a href="#">Buy Now</a></div>
                                 </div>
-                             </div>
-                          </div>
-                          <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-                          <i class="fa fa-angle-left"></i>
-                          </a>
-                          <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-                          <i class="fa fa-angle-right"></i>
-                          </a>
-                       </div>
+                            </div>
+                        </div>
                     </div>
-                 </div>
-                 <!-- banner section end -->
+                    <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- banner section end -->
     </div>
     <!-- banner bg main end -->
     {{-- Common Part --}}

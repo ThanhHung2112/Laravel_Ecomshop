@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Total;
 use App\Models\User;
 use Auth;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -61,8 +62,17 @@ class ClientController extends Controller
         return view('user_template.checkout');
     }
     public function UserProfile (){
-        $user = Auth::user()->latest()->get();
-        return view('user_template.userprofile',compact('user'));
+        $user = Auth::user();
+        if (is_null($user)) {
+            # code...
+            return view('auth.register');
+
+        } else {
+            $user = Auth::user()->latest()->get();
+            return view('user_template.userprofile',compact('user'));
+        }
+
+
     }
     public function PendingOrders (){
         $allorder = Order::latest()->get();
