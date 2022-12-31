@@ -42,6 +42,7 @@ class ClientController extends Controller
         $price = $product_price * $quantity;
         Cart::insert([
             'product_id' => $request->product_id,
+            'size' => $request->size,
             'user_id' => Auth::id(),
             'quantity' => $request->quantity,
             'price' => $price,
@@ -58,6 +59,7 @@ class ClientController extends Controller
             'cart_id' => $item->id,
             'product_id' => $item->product_id,
             'user_id' => Auth::id(),
+            'size' => $item->size,
             'quantity' => $item->quantity,
             'price' => $item->price,
         ]);

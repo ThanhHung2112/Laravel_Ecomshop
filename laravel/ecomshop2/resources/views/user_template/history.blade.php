@@ -15,9 +15,10 @@
                     <tr>
                         <th>Product IMG</th>
                         <th>Product Name</th>
+                        <th>Size</th>
                         <th>Quantity</th>
                         <th>Price</th>
-                        <th>Date</th>
+                        <th>Status</th>
                     </tr>
                     @foreach ($allhistory as $item)
                         <tr>
@@ -27,6 +28,7 @@
                             @endphp
                             <td><img src="{{ asset($img) }}" style="height: 60px"></td>
                             <td>{{ $product_name }}</td>
+                            <td>{{ $item->size }}</td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->price }}</td>
                             <td>Paid</td>

@@ -27,6 +27,21 @@
                             <input type="hidden" name="product_id" id="" value="{{ $product->id }}">
                             <div class="form-group">
                                 <input type="hidden" name="price" id="" value="{{ $product->price }}">
+                                <label for="">Size:</label> <br>
+                                @php
+                                    $sizes = App\Models\Size::latest()->get();
+                                @endphp
+                                @foreach ($sizes as $size)
+                                <div class="lead"
+                                style="
+                                float: left;
+                                margin-left: 20px
+                                ">
+                                    <input name="sizeval" type="radio" value="{{ $size->size }}" placeholder="S">
+                                    <label for="{{ $size->size }}">{{ $size->size }}</label>
+                                </div>
+                                @endforeach
+                                <br>
                                 <label for="quantity">How Many Pics?</label>
                                 <input class="form-control" type="number" min="1" name="quantity" id="" placeholder="1">
                             </div>

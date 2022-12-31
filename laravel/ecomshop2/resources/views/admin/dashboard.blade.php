@@ -193,9 +193,10 @@
                 <table class="table">
                     <thead class="table-light">
                         <tr>
+                            <th>Product IMG</th>
                             <th>User Name</th>
                             <th>Product</th>
-                            <th>Product IMG</th>
+                            <th>Size</th>
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Status</th>
@@ -210,9 +211,10 @@
                         @endphp
 
                         <tr>
+                            <td><img src="{{ asset($img) }}" style="height: 60px"    alt=""></td>
                             <td>{{ $user_name }}</td>
                             <td>{{ $product_name }}</td>
-                            <td><img src="{{ asset($img) }}" style="height: 60px"    alt=""></td>
+                            <td>{{ $order->size }}</td>
                             <td>{{ $order->quantity }}</td>
                             <td>$ {{ $order->price }}</td>
                             <td><span class="badge bg-label-success me-1">Paid</span> </td>

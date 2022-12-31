@@ -24,6 +24,7 @@ class OderController extends Controller
             'cart_id' => $item->id,
             'product_id' => $item->product_id,
             'user_id' => $item->user_id,
+            'size' => $item->size,
             'quantity' => $item->quantity,
             'price' => $item->price
         ]);
