@@ -2,15 +2,16 @@
 @section('main-content')
     <!-- fashion section start -->
 
+
+
+    <h2 class="py-5">Homepage</h2>
     @if (session()->has('message'))
 
-    <div class="alert alert-success">
+    <div class="alert alert-warning">
         {{ session()->get('message') }}
     </div>
 
     @endif
-
-    <h2 class="py-5">Homepage</h2>
     <div class="fashion_section">
         <div id="main_slider">
 

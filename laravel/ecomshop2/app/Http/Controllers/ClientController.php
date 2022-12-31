@@ -11,6 +11,7 @@ use App\Models\User;
 use Auth;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
+use Redirect;
 
 class ClientController extends Controller
 {
@@ -32,6 +33,10 @@ class ClientController extends Controller
     }
     public function AddProductToCart (Request $request){
         $user = Auth::user();
+        if (is_null($request->size)) {
+            // $url = $request->url;
+            return Redirect::back()->with('message','Please Choose Your Size !');
+        }
         if (is_null($user)) {
             # code...
             return view('auth.register');
