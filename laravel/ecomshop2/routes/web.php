@@ -57,8 +57,14 @@ Route::controller(ClientController::class)->group(function () {
         Route::post('/add-product-to-cart', 'AddProductToCart')->name('addproducttocart');
         Route::get('/delete-order/{id}', 'DeleteOrder')->name('deleteorder');
         Route::get('/buyproduct/{id}', 'BuyProduct')->name('buyproduct');
+        Route::get('/shipping-information/{type}', 'ShippingInf')->name('shippinginf');
+        Route::post('/add-shipping-information', 'AddShippingInf')->name('addshippinginf');
 
-        Route::get('/checkout', 'Checkout')->name('checkout');
+
+        Route::get('/checkout/{type}', 'Checkout')->name('checkout');
+        Route::post('/place-order/{type}', 'PlaceOrder')->name('placeorder');
+
+
         Route::get('/user-profile', 'UserProfile')->name('userprofile');
         Route::get('/user-profile/pending-orders', 'PendingOrders')->name('userorders');
         Route::get('/user-profile/history', 'History')->name('history');

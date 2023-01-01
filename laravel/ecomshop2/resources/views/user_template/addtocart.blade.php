@@ -21,7 +21,12 @@
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
+                    @php
+                        $total = 0;
+                        $type = "all"
+                    @endphp
                     @foreach ($cart_items as $item)
+                        {{-- <input type="hidden" value="{{ $item->product_id }}" name="type"> --}}
                         <tr>
                             @php
                                 $product_name = App\Models\Product::where('id', $item->product_id)->value('product_name');
@@ -32,17 +37,45 @@
                             <td>{{ $item->size }}</td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->price }}</td>
-                            <td>
+                            <td>                                 
                                 <a href="{{ route('deleteorder', $item->id) }}" class="btn btn-warning">Remove</a>
                                 <a href="{{ route('buyproduct', $item->id) }}" class="btn btn-primary">Buy</a>
+                                {{-- <a href="{{ route('shipinginf', $item->id) }}" class="btn btn-primary">Buy Now</a> --}}
                             </td>
 
-
+                            @php
+                                $total = $total + $item->price ;
+                            @endphp
                         </tr>
-                    @endforeach
+                    @endforeach                    
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="
+                        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        font-weight: bold;
+                        font-size: 19px;
+                        color: rgb(192, 61, 61);
+                        ">Total</td>
+                        <td style="
+                        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        font-weight: bold;
+                        font-size: 19px;
+                        color: rgb(192, 61, 61);
+                        ">$ {{ $total }}</td>
+                        @if ($total = 0)
+                            <td><a href="" class="btn btn-primary disabled">Buy All</a></td> 
+                        @else
+                            {{-- <input type="hidden" value="all" name="type"> --}}
+                            <td><a href="{{ route('shippinginf', $type) }}" class="btn btn-primary">Buy All</a></td> 
+                        @endif
+                                           
+                        
+                    </tr>
                 </table>
-            </div>
-        </div>
+            </div>  
+        </div>  
     </div>
 </div>
 @endsection

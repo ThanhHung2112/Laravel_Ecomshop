@@ -12,7 +12,8 @@ class OderController extends Controller
 {
     public function Index(){
         $allorder = Order::latest()->get();
-        return view('admin.pendingoder', compact('allorder'));
+        $allordered = Total::latest()->get();
+        return view('admin.pendingoder', compact('allorder', 'allordered'));
     }
     public function DeleteOrder ($id){
         Order::findOrFail($id)->delete();
@@ -26,7 +27,11 @@ class OderController extends Controller
             'user_id' => $item->user_id,
             'size' => $item->size,
             'quantity' => $item->quantity,
-            'price' => $item->price
+            'price' => $item->price,
+            'city_name' => $item->city_name,
+            'address' => $item->address,
+            'phone_number' => $item->phone_number,
+            'node' => $item->node
         ]);
         Order::findOrFail($id)->delete();
         return redirect()->route('pendingorder')->with('message', 'Order Done Succesfully!');

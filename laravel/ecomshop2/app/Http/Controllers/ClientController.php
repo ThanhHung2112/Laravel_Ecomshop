@@ -6,11 +6,13 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Shipinginf;
 use App\Models\Total;
 use App\Models\User;
 use Auth;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 use Redirect;
 
 class ClientController extends Controller
@@ -59,20 +61,75 @@ class ClientController extends Controller
         return redirect()->route('addtocart')->with('message', 'Your item deleted successfully!');
     }
     public function BuyProduct ($id){
-        $item = Cart::findOrFail($id);
-        Order::insert([
-            'cart_id' => $item->id,
-            'product_id' => $item->product_id,
-            'user_id' => Auth::id(),
-            'size' => $item->size,
-            'quantity' => $item->quantity,
-            'price' => $item->price,
-        ]);
-        Cart::findOrFail($id)->delete();
-        return redirect()->route('userorders')->with('message', 'Your item added successfully!');
+        $type = $id;
+        $check = Shipinginf::where('user_id', Auth::id());
+        if (is_null($check)) {
+            return redirect()->route('shippinginf', $type);
+        } else {
+            return redirect()->route('checkout', $type);
+        }
     }
-    public function Checkout (){
-        return view('user_template.checkout');
+    public function ShippingInf ($type){
+    
+        return view('user_template.shippinginf', compact('type'));
+    }
+    public function AddShippingInf (Request $request){
+        $type = $request->type;        
+        $check = Shipinginf::where('user_id', Auth::id());
+        if (is_null($check)) {
+            Shipinginf::insert([
+                'user_id' => Auth::id(),
+                'city_name' => $request->city_name,
+                'phone_number' => $request->phone_number,
+                'address' => $request->address,
+                'node' => $request->node,
+            ]);            
+        } else {
+            Shipinginf::where('user_id', Auth::id())->delete();
+            Shipinginf::insert([
+                'user_id' => Auth::id(),
+                'city_name' => $request->city_name,
+                'phone_number' => $request->phone_number,
+                'address' => $request->address,
+                'node' => $request->node,
+            ]);                  
+        }
+        return redirect()->route('checkout', $type);
+    }
+    public function Checkout ($type){
+        $userid = Auth::id();
+        $shippinginf = Shipinginf::where('user_id', $userid)->first();
+        if ($type === 'all') {
+            $allproducts = Cart::where('user_id', $userid)->get();
+        } else{
+            $allproducts = Cart::where('id', $type)->get();
+        }
+
+        return view('user_template.checkout', compact('shippinginf', 'allproducts', 'type'));
+    }
+    public function PlaceOrder ($type){
+        $userid = Auth::id();
+        if ($type === 'all') {
+            $allproducts = Cart::where('user_id', $userid)->get();            
+        } else{
+            $allproducts = Cart::where('id', $type)->get(); ;   
+        }
+        $shippinginf = Shipinginf::where('user_id', $userid)->first();
+        foreach ($allproducts as $product) {    
+            Order::insert([
+                'cart_id' => $product->id,
+                'product_id' => $product->product_id,
+                'user_id' => Auth::id(),
+                'size' => $product->size,
+                'quantity' => $product->quantity,
+                'price' => $product->price,
+                'city_name' => $shippinginf->city_name,
+                'address' => $shippinginf->address,
+                'phone_number' => $shippinginf->phone_number,
+                'node' => $shippinginf->node
+            ]);
+        }
+        return redirect()->route('userorders')->with('message', 'Your items ordered successfully!');
     }
     public function UserProfile (){
         $user = Auth::user();

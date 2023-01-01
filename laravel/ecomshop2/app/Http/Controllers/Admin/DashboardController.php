@@ -18,6 +18,7 @@ class DashboardController extends Controller
         $pendingorder = Order::latest()->get()->count();
         $categories = Category::latest()->get();
         $allordered = Total::latest()->get();
-        return view('admin.dashboard', compact('sum_price','sum_product','ordernum','pendingorder', 'categories', 'allordered'));
+        $allorder = Order::latest()->get();
+        return view('admin.dashboard', compact('sum_price','sum_product','ordernum','pendingorder', 'categories', 'allordered', 'allorder'));
     }
 }

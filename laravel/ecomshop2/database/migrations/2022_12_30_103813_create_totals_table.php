@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('size');
             $table->integer('quantity');
             $table->integer('price');
+            $table->string('city_name');
+            $table->string('address');
+            $table->string('phone_number');
+            $table->string('node');
             $table->timestamps();
         });
     }

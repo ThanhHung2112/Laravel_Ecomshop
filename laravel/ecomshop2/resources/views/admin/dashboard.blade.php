@@ -188,36 +188,50 @@
         @endif
         <!-- Bootstrap Table with Header - Light -->
         <div class="card">
-            <h5 class="card-header">Sales History Information</h5>
+            <h5 class="card-header">Available Oder Information</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead class="table-light">
                         <tr>
-                            <th>Product IMG</th>
-                            <th>User Name</th>
+                            <th>User</th>
+                            <th>Info</th>
+                            {{-- <th>IMG</th> --}}
                             <th>Product</th>
                             <th>Size</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Status</th>
+                            <th>Num</th>
+                            <th>Total</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($allordered as $order)
+                        @foreach ($allorder as $order)
                         @php
                             $product_name = App\Models\Product::where('id', $order->product_id)->value('product_name');
                             $img = App\Models\Product::where('id', $order->product_id)->value('product_img');
                             $user_name = Auth::user()::where('id', $order->user_id)->value('name');
                         @endphp
 
+
                         <tr>
-                            <td><img src="{{ asset($img) }}" style="height: 60px"    alt=""></td>
                             <td>{{ $user_name }}</td>
+                            <td>
+                                <ul>
+                                    <li>{{ $order->city_name }}</li>
+                                    <li>{{ $order->address }}</li>
+                                    <li>{{ $order->phone_number }}</li>
+                                    <li>{{ $order->node }}</li>
+                                </ul>
+                            </td>
+                            {{-- <td><img src="{{ asset($img) }}" style="height: 60px" alt=""></td> --}}
                             <td>{{ $product_name }}</td>
                             <td>{{ $order->size }}</td>
+
                             <td>{{ $order->quantity }}</td>
-                            <td>$ {{ $order->price }}</td>
-                            <td><span class="badge bg-label-success me-1">Paid</span> </td>
+                            <td>{{ $order->price }} $</td>
+                            <td>
+                                <a href="{{ route('storeorder', $order->id) }}" class="btn btn-success">Confirm</a>
+                                <a href="{{ route('delorder', $order->id) }}" class="btn btn-warning">Delete</a>
+                            </td>
                         </tr>
 
                         @endforeach
@@ -225,6 +239,7 @@
                 </table>
             </div>
         </div>
+        
 
     </div>
 
