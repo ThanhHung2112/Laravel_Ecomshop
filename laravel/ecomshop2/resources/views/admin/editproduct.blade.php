@@ -1,6 +1,6 @@
 @extends('admin.layouts.template')
 @section('page_title')
-    Edit Products - Ecomshop
+    Edit Products - HueShoes
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">

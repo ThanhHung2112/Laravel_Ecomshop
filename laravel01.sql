@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2023 at 11:07 AM
+-- Generation Time: Dec 28, 2022 at 05:54 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravel02`
+-- Database: `laravel01`
 --
 
 -- --------------------------------------------------------
@@ -34,17 +34,17 @@ CREATE TABLE `carts` (
   `quantity` int(11) NOT NULL DEFAULT 1,
   `price` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `product_id`, `user_id`, `quantity`, `price`, `created_at`, `updated_at`, `size`) VALUES
-(34, 3, 2, 1, 120000, NULL, NULL, 'M'),
-(35, 3, 2, 1, 120000, NULL, NULL, 'M');
+INSERT INTO `carts` (`id`, `product_id`, `user_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 2, 240000, NULL, NULL),
+(2, 3, 1, 1, 120000, NULL, NULL),
+(3, 3, 1, 1, 120000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,8 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `category_name`, `slug`, `subcategory_count`, `product_count`, `created_at`, `updated_at`) VALUES
 (9, 'Lady Fashion', 'lady-fashion', 0, 1, NULL, '2022-12-27 03:14:29'),
-(10, 'Men Fashion', 'men-fashion', 0, 0, NULL, '2022-12-30 00:27:01');
+(10, 'Men Fashion', 'men-fashion', 0, 1, NULL, '2022-12-27 02:08:19'),
+(11, 'New products', 'new-products', 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -111,42 +112,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2022_12_13_152342_create_categories_table', 3),
 (7, '2022_12_13_153611_create_subcategories_table', 4),
 (8, '2022_12_13_154426_create_products_table', 5),
-(9, '2022_12_27_152813_create_carts_table', 6),
-(10, '2022_12_30_103813_create_totals_table', 7),
-(11, '2022_12_30_144711_create_orders_table', 8),
-(12, '2022_12_31_105721_create_sizes_table', 9),
-(13, '2023_01_01_070857_create_shipinginfs_table', 10);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `orders`
---
-
-CREATE TABLE `orders` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `cart_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `node` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `cart_id`, `product_id`, `user_id`, `quantity`, `price`, `created_at`, `updated_at`, `size`, `address`, `phone_number`, `node`, `city_name`) VALUES
-(12, 34, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '079 1234567', 'Van chuyen nhanh nhe', 'Hue'),
-(13, 35, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '079 1234567', 'Van chuyen nhanh nhe', 'Hue'),
-(14, 35, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '079 1234567', 'Van chuyen nhanh nhe', 'Hue');
+(9, '2022_12_27_152813_create_carts_table', 6);
 
 -- --------------------------------------------------------
 
@@ -283,9 +249,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_name`, `product_short_des`, `product_long_des`, `price`, `product_category_name`, `product_subcategory_name`, `product_category_id`, `product_subcategory_id`, `product_img`, `quantity`, `slug`, `created_at`, `updated_at`) VALUES
-(3, 'Timberland Boot Black', 'PRODUCT SHORT DECRIPSION', 'PRODUCT LONG DEPCRIPSION', 120000, 'Men Fashion', 'Timberland', 10, 3, 'upload/1753622871921152.jpg', 1200, 'timberland-boot-black', NULL, '2022-12-30 03:22:26'),
+(3, 'Timberland Boot', 'PRODUCT SHORT DECRIPSION', 'PRODUCT LONG DEPCRIPSION', 120000, 'Men Fashion', 'Timberland', 10, 3, 'upload/1753357588524103.jpg', 1200, 'timberland-boot', NULL, NULL),
 (4, 'Timberland Boot 2', 'PRODUCT SHORT DECRIPSION', 'PRODUCT LONG DEPCRIPSION', 120000, 'Men Fashion', 'Timberland', 10, 3, 'upload/1753357588524103.jpg', 1200, 'timberland-boot', NULL, NULL),
 (5, 'Timberland Boot 3', 'PRODUCT SHORT DECRIPSION', 'PRODUCT LONG DEPCRIPSION', 120000, 'Men Fashion', 'Timberland', 10, 3, 'upload/1753357588524103.jpg', 1200, 'timberland-boot', NULL, NULL),
+(6, 'Timberland Boot 4', 'PRODUCT SHORT DECRIPSION', 'PRODUCT LONG DEPCRIPSION', 120000, 'Men Fashion', 'Timberland', 10, 3, 'upload/1753357588524103.jpg', 1200, 'timberland-boot', NULL, NULL),
 (7, 'Combat Boot', 'Short Des', 'Long Des', 100000, 'Lady Fashion', 'Combat Boost', 9, 4, 'upload/1753361751345649.png', 100, 'combat-boot', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -328,56 +295,7 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
-(2, 1, 'App\\Models\\User'),
-(1, 2, 'App\\Models\\User');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shipinginfs`
---
-
-CREATE TABLE `shipinginfs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `city_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `node` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `shipinginfs`
---
-
-INSERT INTO `shipinginfs` (`id`, `user_id`, `city_name`, `phone_number`, `address`, `node`, `created_at`, `updated_at`) VALUES
-(3, 2, 'Hue', '079 1234567', '123 Dien bien Phu', 'Van chuyen nhanh nhe', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sizes`
---
-
-CREATE TABLE `sizes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `sizes`
---
-
-INSERT INTO `sizes` (`id`, `size`, `created_at`, `updated_at`) VALUES
-(1, 'S', NULL, NULL),
-(2, 'M', NULL, NULL),
-(3, 'L', NULL, NULL),
-(4, 'XL', NULL, NULL),
-(5, 'XXL', NULL, NULL);
+(2, 1, 'App\\Models\\User');
 
 -- --------------------------------------------------------
 
@@ -401,36 +319,8 @@ CREATE TABLE `subcategories` (
 --
 
 INSERT INTO `subcategories` (`id`, `subcategory_name`, `category_id`, `category_name`, `product_count`, `slug`, `created_at`, `updated_at`) VALUES
-(3, 'Timberland', 10, 'Men Fashion', 0, 'timberland', NULL, '2022-12-30 00:27:01'),
+(3, 'Timberland', 10, 'Men Fashion', 1, 'timberland', NULL, '2022-12-27 02:08:19'),
 (4, 'Combat Boost', 9, 'Lady Fashion', 1, 'combat-boost', NULL, '2022-12-27 03:14:29');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `totals`
---
-
-CREATE TABLE `totals` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `cart_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 1,
-  `price` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `totals`
---
-
-INSERT INTO `totals` (`id`, `cart_id`, `product_id`, `user_id`, `quantity`, `price`, `created_at`, `updated_at`, `size`) VALUES
-(2, 7, 3, 1, 3, 360000, NULL, NULL, 'S'),
-(3, 12, 3, 1, 1, 120000, NULL, NULL, 'XL'),
-(4, 2, 3, 1, 3, 360000, NULL, NULL, 'M'),
-(5, 4, 3, 2, 1, 120000, NULL, NULL, 'L');
 
 -- --------------------------------------------------------
 
@@ -454,8 +344,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Thanh Hùng', 'binbinhung2112@gmail.com', NULL, '$2y$10$UBCt6cmDLM/ha9o6qnVoruIz.Vjhm3NYTBVZOJ7iO9UuDV3cTolTS', 'RHwPJ35gFAa37LeMe2gZAkg3rOc2buYKxGgG2QTLc1WHxaqcdWO4uW55i0Ou', '2022-12-10 03:50:52', '2022-12-10 03:50:52'),
-(2, 'Subin', '20E1020063@hueuni.edu.vn', NULL, '$2y$10$JYOsFGgEBoKDDRCvh7G3leubZ8ppShe5vXl69FW3ySnPwaSqh6Ara', NULL, '2022-12-30 10:49:52', '2022-12-30 10:49:52');
+(1, 'Thanh Hùng', 'binbinhung2112@gmail.com', NULL, '$2y$10$UBCt6cmDLM/ha9o6qnVoruIz.Vjhm3NYTBVZOJ7iO9UuDV3cTolTS', 'yGWvDGcUbZN6XKrWGWtanYbxZ68M0ZuIKm8faJoM4oCx74O7LkZPxgXtjWID', '2022-12-10 03:50:52', '2022-12-10 03:50:52');
 
 --
 -- Indexes for dumped tables
@@ -484,12 +373,6 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -548,27 +431,9 @@ ALTER TABLE `role_user`
   ADD KEY `role_user_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `shipinginfs`
---
-ALTER TABLE `shipinginfs`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sizes`
---
-ALTER TABLE `sizes`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `totals`
---
-ALTER TABLE `totals`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -586,7 +451,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -604,13 +469,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -637,34 +496,16 @@ ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `shipinginfs`
---
-ALTER TABLE `shipinginfs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `sizes`
---
-ALTER TABLE `sizes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `totals`
---
-ALTER TABLE `totals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

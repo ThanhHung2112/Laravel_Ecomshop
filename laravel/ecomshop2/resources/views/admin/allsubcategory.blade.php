@@ -1,6 +1,6 @@
 @extends('admin.layouts.template')
 @section('page_title')
-    All Sub Category - Ecomshop
+    All Sub Category - HueShoes
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">

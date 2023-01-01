@@ -21,7 +21,7 @@
 
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('dashboard/assets/img/favicon/favicon.ico') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('dashboard/assets/img/favicon/favicon_4.ico') }}"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

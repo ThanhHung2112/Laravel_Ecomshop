@@ -1,6 +1,6 @@
 @extends('admin.layouts.template')
 @section('page_title')
-History Oder - Ecomshop
+History Order - HueShoes
 @endsection
 @section('content')
 

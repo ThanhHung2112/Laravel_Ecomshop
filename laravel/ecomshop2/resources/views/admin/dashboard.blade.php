@@ -1,6 +1,6 @@
 @extends('admin.layouts.template')
 @section('page_title')
-    Dashboard - Ecomshop
+    Dashboard - HueShoes
 @endsection
 
 @section('content')

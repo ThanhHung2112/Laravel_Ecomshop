@@ -1,6 +1,6 @@
 @extends('admin.layouts.template')
 @section('page_title')
-    Edit Category - Ecomshop
+    Edit Category - HueShoes
 @endsection
 
 @section('content')
