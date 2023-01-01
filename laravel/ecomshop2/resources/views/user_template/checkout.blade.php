@@ -9,19 +9,19 @@
             <p>Your address - {{ $shippinginf->address }}</p>
             <p>Phone number - {{ $shippinginf->phone_number }}</p>
             <p>Node - {{ $shippinginf->node }}</p>
-            
+
         </div>
         <form action="{{ route('placeorder', $type) }}" method="POST">
             @csrf
             <input type="submit" value="Place Order" class="btn btn-primary" style="float: right">
-        </form>    
-        <form action="" method="POST">
+        </form>
+        <form action="{{ route('addtocart') }}" method="">
             @csrf
             <input type="submit" value="Cancel Order" class="btn btn-danger mr-3" style="float: right">
         </form>
-           
+
     </div>
-    
+
 </div>
 <div style="margin-top: 20px" class="row">
     <div class="col-12">
@@ -34,10 +34,10 @@
                         <th>Product Name</th>
                         <th>Size</th>
                         <th>Quantity</th>
-                        <th>Price</th>                        
+                        <th>Price</th>
                     </tr>
                     @php
-                        $total = 0;                    
+                        $total = 0;
                     @endphp
                     @foreach ($allproducts as $item)
                         {{-- <input type="hidden" value="{{ $item->product_id }}" name="type"> --}}
@@ -50,13 +50,13 @@
                             <td>{{ $product_name }}</td>
                             <td>{{ $item->size }}</td>
                             <td>{{ $item->quantity }}</td>
-                            <td>{{ $item->price }}</td>                   
+                            <td>{{ $item->price }}</td>
 
                             @php
                                 $total = $total + $item->price ;
                             @endphp
                         </tr>
-                    @endforeach                     
+                    @endforeach
                     <tr>
                         <td></td>
                         <td></td>
@@ -74,8 +74,8 @@
                         color: rgb(192, 61, 61);
                         ">$ {{ $total }}</td>
                     </tr>
-                </table>    
-            </div>  
+                </table>
+            </div>
         </div>
     </div>
 </div>

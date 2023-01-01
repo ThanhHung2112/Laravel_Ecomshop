@@ -24,7 +24,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">{{ $product->product_name }}</h4>
                                         <p class="price_text">Price <span style="color: #262626;">$ {{ $product->price }}</span></p>
-                                        <div class="tshirt_img"><img src="{{ asset($product->product_img) }}" style="height: 300px"></div>
+                                        <div class="tshirt_img"><img src="{{ asset($product->product_img) }}" style="height: 280px"></div>
                                         {{-- <p class="description_text">Short Des: {{ $product->product_short_des }}</p> --}}
                                         <div class="btn_main">
                                             <div class="buy_bt">

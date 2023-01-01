@@ -17,7 +17,7 @@ class OderController extends Controller
     }
     public function DeleteOrder ($id){
         Order::findOrFail($id)->delete();
-        return redirect()->route('pendingorder')->with('message', 'Order Deleted Succesfully!');
+        return redirect()->route('admindashboard')->with('message', 'Order Deleted Succesfully!');
     }
     public function StoreOrder ($id){
         $item = Order::findOrFail($id);

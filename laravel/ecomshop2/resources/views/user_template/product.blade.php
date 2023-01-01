@@ -101,8 +101,8 @@
                                                     <input class="btn btn-warning" type="submit" value="Buy Now"
                                                         name="" id="">
                                                 </form>
-                                            </div>
-                                            <div class="seemore_bt"><a
+                                            </div>                                                
+                                                <div class="seemore_bt" style="padding-top: 30px"><a
                                                     href="{{ route('singleproduct', [$product->id, $product->slug]) }}">See
                                                     More</a></div>
                                         </div>
