@@ -37,7 +37,7 @@
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Product Quantity</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" id="quantity" name="quantity"
-                                    value="{{ $productinfo->quantity }}"" />
+                                    value="{{ $productinfo->quantity }}" />
                             </div>
                         </div>
 

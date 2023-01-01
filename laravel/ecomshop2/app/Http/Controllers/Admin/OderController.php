@@ -34,6 +34,6 @@ class OderController extends Controller
             'node' => $item->node
         ]);
         Order::findOrFail($id)->delete();
-        return redirect()->route('pendingorder')->with('message', 'Order Done Succesfully!');
+        return redirect()->route('admindashboard')->with('message', 'Order Confirmed Succesfully!');
     }
 }
