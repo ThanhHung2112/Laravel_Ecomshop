@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2023 at 11:07 AM
+-- Generation Time: Jan 01, 2023 at 11:17 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -44,7 +44,8 @@ CREATE TABLE `carts` (
 
 INSERT INTO `carts` (`id`, `product_id`, `user_id`, `quantity`, `price`, `created_at`, `updated_at`, `size`) VALUES
 (34, 3, 2, 1, 120000, NULL, NULL, 'M'),
-(35, 3, 2, 1, 120000, NULL, NULL, 'M');
+(35, 3, 2, 1, 120000, NULL, NULL, 'M'),
+(36, 3, 2, 1, 120000, NULL, NULL, 'M');
 
 -- --------------------------------------------------------
 
@@ -144,9 +145,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `cart_id`, `product_id`, `user_id`, `quantity`, `price`, `created_at`, `updated_at`, `size`, `address`, `phone_number`, `node`, `city_name`) VALUES
-(12, 34, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '079 1234567', 'Van chuyen nhanh nhe', 'Hue'),
 (13, 35, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '079 1234567', 'Van chuyen nhanh nhe', 'Hue'),
-(14, 35, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '079 1234567', 'Van chuyen nhanh nhe', 'Hue');
+(14, 35, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '079 1234567', 'Van chuyen nhanh nhe', 'Hue'),
+(15, 34, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '0791234567', 'Ship nhanh ti', 'Hue'),
+(16, 35, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '0791234567', 'Ship nhanh ti', 'Hue'),
+(17, 36, 3, 2, 1, 120000, NULL, NULL, 'M', '123 Dien bien Phu', '0791234567', 'Ship nhanh ti', 'Hue');
 
 -- --------------------------------------------------------
 
@@ -353,7 +356,7 @@ CREATE TABLE `shipinginfs` (
 --
 
 INSERT INTO `shipinginfs` (`id`, `user_id`, `city_name`, `phone_number`, `address`, `node`, `created_at`, `updated_at`) VALUES
-(3, 2, 'Hue', '079 1234567', '123 Dien bien Phu', 'Van chuyen nhanh nhe', NULL, NULL);
+(4, 2, 'Hue', '0791234567', '123 Dien bien Phu', 'Ship nhanh ti', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -419,18 +422,23 @@ CREATE TABLE `totals` (
   `price` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `node` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `totals`
 --
 
-INSERT INTO `totals` (`id`, `cart_id`, `product_id`, `user_id`, `quantity`, `price`, `created_at`, `updated_at`, `size`) VALUES
-(2, 7, 3, 1, 3, 360000, NULL, NULL, 'S'),
-(3, 12, 3, 1, 1, 120000, NULL, NULL, 'XL'),
-(4, 2, 3, 1, 3, 360000, NULL, NULL, 'M'),
-(5, 4, 3, 2, 1, 120000, NULL, NULL, 'L');
+INSERT INTO `totals` (`id`, `cart_id`, `product_id`, `user_id`, `quantity`, `price`, `created_at`, `updated_at`, `size`, `city_name`, `address`, `phone_number`, `node`) VALUES
+(2, 7, 3, 1, 3, 360000, NULL, NULL, 'S', NULL, NULL, NULL, NULL),
+(3, 12, 3, 1, 1, 120000, NULL, NULL, 'XL', NULL, NULL, NULL, NULL),
+(4, 2, 3, 1, 3, 360000, NULL, NULL, 'M', NULL, NULL, NULL, NULL),
+(5, 4, 3, 2, 1, 120000, NULL, NULL, 'L', NULL, NULL, NULL, NULL),
+(6, 12, 3, 2, 1, 120000, NULL, NULL, 'M', 'Hue', '123 Dien bien Phu', '079 1234567', 'Van chuyen nhanh nhe');
 
 -- --------------------------------------------------------
 
@@ -586,7 +594,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -610,7 +618,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -640,7 +648,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `shipinginfs`
 --
 ALTER TABLE `shipinginfs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sizes`
@@ -658,7 +666,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `totals`
 --
 ALTER TABLE `totals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
