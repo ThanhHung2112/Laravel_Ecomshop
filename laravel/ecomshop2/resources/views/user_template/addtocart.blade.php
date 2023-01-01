@@ -39,7 +39,7 @@
                             <td>{{ $item->price }}</td>
                             <td>                                 
                                 <a href="{{ route('deleteorder', $item->id) }}" class="btn btn-warning">Remove</a>
-                                <a href="{{ route('buyproduct', $item->id) }}" class="btn btn-primary">Buy</a>
+                                <a href="{{ route('buyproduct', $item->id) }}" class="btn btn-success">Buy</a>
                                 {{-- <a href="{{ route('shipinginf', $item->id) }}" class="btn btn-primary">Buy Now</a> --}}
                             </td>
 
