@@ -64,8 +64,8 @@
                         font-size: 19px;
                         color: rgb(192, 61, 61);
                         ">$ {{ $total }}</td>
-                        @if ($total = 0)
-                            <td><a href="" class="btn btn-primary disabled">Buy All</a></td> 
+                        @if ($total <= 1)
+                            <td><a href="{{ route('shippinginf', $type) }}" class="btn btn-primary disabled">Buy All</a></td> 
                         @else
                             {{-- <input type="hidden" value="all" name="type"> --}}
                             <td><a href="{{ route('shippinginf', $type) }}" class="btn btn-primary">Buy All</a></td> 

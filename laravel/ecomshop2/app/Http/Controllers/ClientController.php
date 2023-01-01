@@ -128,6 +128,7 @@ class ClientController extends Controller
                 'phone_number' => $shippinginf->phone_number,
                 'node' => $shippinginf->node
             ]);
+            Cart::findOrFail($product->id)->delete();
         }
         return redirect()->route('userorders')->with('message', 'Your items ordered successfully!');
     }
