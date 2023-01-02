@@ -62,7 +62,7 @@ class ClientController extends Controller
     }
     public function BuyProduct ($id){
         $type = $id;
-        $check = Shipinginf::where('user_id', Auth::id());
+        $check = Shipinginf::where('user_id', Auth::id())->first();
         if (is_null($check)) {
             return redirect()->route('shippinginf', $type);
         } else {
