@@ -14,6 +14,14 @@
                     <li>User ID - {{ Auth::user()->id }}</li>
                 </ul>
             </div>
+            <div class="my-3 product-details">
+                <p class="lead">Shipping Information</p>
+                <ul class="p-2 bg-light my-2">
+                    <li>City/Village: {{ $shippinginf->city_name }}</li>
+                    <li>Address: {{ $shippinginf->address }}</li>   
+                    <li>Phone number: {{ $shippinginf->phone_number }}</li>
+                </ul>
+            </div>
 
 </div>
 @endsection

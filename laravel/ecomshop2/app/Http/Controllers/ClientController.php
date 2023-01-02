@@ -70,11 +70,20 @@ class ClientController extends Controller
         }
     }
     public function ShippingInf ($type){
-    
+
         return view('user_template.shippinginf', compact('type'));
     }
     public function AddShippingInf (Request $request){
-        $type = $request->type;        
+        if (is_null($request ->city_name)) {
+            return Redirect::back()->with('message','Please fill Your City/Village Name !');
+        } elseif (is_null($request ->phone_number)) {
+            return Redirect::back()->with('message','Please fill Your PhoneNumber!');
+        } elseif (is_null($request ->address)) {
+            return Redirect::back()->with('message','Please fill Your Address!');
+        } elseif (is_null($request ->node)) {
+            $request['node'] = 'None';
+        }
+        $type = $request->type;
         $check = Shipinginf::where('user_id', Auth::id());
         if (is_null($check)) {
             Shipinginf::insert([
@@ -83,7 +92,7 @@ class ClientController extends Controller
                 'phone_number' => $request->phone_number,
                 'address' => $request->address,
                 'node' => $request->node,
-            ]);            
+            ]);
         } else {
             Shipinginf::where('user_id', Auth::id())->delete();
             Shipinginf::insert([
@@ -92,7 +101,7 @@ class ClientController extends Controller
                 'phone_number' => $request->phone_number,
                 'address' => $request->address,
                 'node' => $request->node,
-            ]);                  
+            ]);
         }
         return redirect()->route('checkout', $type);
     }
@@ -110,12 +119,12 @@ class ClientController extends Controller
     public function PlaceOrder ($type){
         $userid = Auth::id();
         if ($type === 'all') {
-            $allproducts = Cart::where('user_id', $userid)->get();            
+            $allproducts = Cart::where('user_id', $userid)->get();
         } else{
-            $allproducts = Cart::where('id', $type)->get(); ;   
+            $allproducts = Cart::where('id', $type)->get(); ;
         }
         $shippinginf = Shipinginf::where('user_id', $userid)->first();
-        foreach ($allproducts as $product) {    
+        foreach ($allproducts as $product) {
             Order::insert([
                 'cart_id' => $product->id,
                 'product_id' => $product->product_id,
@@ -134,13 +143,16 @@ class ClientController extends Controller
     }
     public function UserProfile (){
         $user = Auth::user();
+
         if (is_null($user)) {
             # code...
             return view('auth.register');
 
         } else {
             $user = Auth::user()->latest()->get();
-            return view('user_template.userprofile',compact('user'));
+            $userid = Auth::id();
+            $shippinginf = Shipinginf::where('user_id', $userid)->first();
+            return view('user_template.userprofile',compact('user', 'shippinginf'));
         }
 
 

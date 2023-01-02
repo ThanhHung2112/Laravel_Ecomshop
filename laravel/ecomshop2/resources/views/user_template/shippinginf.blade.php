@@ -1,11 +1,16 @@
 @extends('user_template.layouts.template')
 @section('main-content')
-<h2>Provice Your Shipping Information</h2>
-<div class="row">
-    <div class="col-12">
-        <div class="box_main">
-            <form action="{{ route('addshippinginf') }}" method="POST">
-                @csrf       
+    <h2>Provice Your Shipping Information</h2>
+    <div class="row">
+        <div class="col-12">
+            <div class="box_main">
+                @if (session()->has('message'))
+                    <div class="alert alert-warning">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif  
+                <form action="{{ route('addshippinginf') }}" method="POST">
+                    @csrf
                     <input type="hidden" name="type" id="" value="{{ $type }}">
                     <div class="form-group">
                         <label for="city_name">City/Village name</label>
@@ -24,8 +29,8 @@
                         <input type="text" class="form-control" name="node" id="">
                     </div>
                     <input type="submit" value="Next" class="btn btn-primary">
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 @endsection
