@@ -154,8 +154,6 @@ class ClientController extends Controller
             $shippinginf = Shipinginf::where('user_id', $userid)->first();
             return view('user_template.userprofile',compact('user', 'shippinginf'));
         }
-
-
     }
     public function PendingOrders (){
         $allorder = Order::where('user_id', Auth::id())->latest()->get();
@@ -163,9 +161,7 @@ class ClientController extends Controller
     }
     public function History (){
         $userid = Auth::user()->id;
-
-        $allhistory = Total::where('user_id', $userid)->get();
-
+        $allhistory = Total::where('user_id', $userid)->get();  
         return view('user_template.history', compact('allhistory'));
     }
     public function NewRelease (){
