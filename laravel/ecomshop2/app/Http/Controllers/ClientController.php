@@ -158,7 +158,7 @@ class ClientController extends Controller
 
     }
     public function PendingOrders (){
-        $allorder = Order::latest()->get();
+        $allorder = Order::where('user_id', Auth::id())->latest()->get();
         return view('user_template.pendingorders', compact('allorder'));
     }
     public function History (){
