@@ -8,11 +8,13 @@ Experience shopping like never before! HUESHOSE enchants customers with features
 🧑‍💻 Admin's Power Hub:
 Step behind the scenes into the Admin portal, where administrators wield control. Explore the robust order management system, ensuring a smooth journey from order placement to fulfillment.
 
-# INTERFACCE
+# USER INTERFACCE 
+
+Click on to watch video below 👇🏻
 
 [![Watch the video](https://img.youtube.com/vi/gn3jjmkEiUA/maxresdefault.jpg)](https://www.youtube.com/watch?v=gn3jjmkEiUA)
 
-# How to Usage ?
+# INSTALLATION
 
 1. Clone this responsitory to your computer
   ```bash
