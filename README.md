@@ -12,7 +12,7 @@ Step behind the scenes into the Admin portal, where administrators wield control
 
 Click on to watch video below 👇🏻
 
-[![Watch the video](https://img.youtube.com/vi/d5GoHRTfkoI/maxresdefault.jpg)](https://www.youtube.com/watch?v=d5GoHRTfkoI)
+[![Watch the video](https://img.youtube.com/vi/gn3jjmkEiUA/maxresdefault.jpg)](https://www.youtube.com/watch?v=gn3jjmkEiUA)
 
 
 # INSTALLATION
